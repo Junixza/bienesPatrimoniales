@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+<!-- Hereda el layout base (navbar, estilos y bloques) -->
+{% block title %}Dashboard{% endblock %}
+<!-- Título de la pestaña del navegador -->
+{% block content %}
+<!--
+  Plantilla: panel/dashboard.html
+  Propósito: Panel de control con accesos rápidos y métricas.
+  Contexto esperado:
+    - `stats`: diccionario con métricas agregadas, por ejemplo:
+        * stats.bienes_total
+        * stats.bienes_activos
+        * stats.bienes_baja
+  Notas:
+    - Los enlaces de la columna izquierda apuntan a vistas clave del sistema.
+    - Las tarjetas muestran valores con `default:0` para evitar fallos si no hay datos.
+-->
+<h1 class="h3 mb-4">Panel de control</h1>
+
+<div class="row g-4 align-items-start">
+  <!-- Columna izquierda: acciones -->
+  <div class="col-lg-4">
+    <div class="d-flex flex-wrap gap-1">
+      <a class="btn btn-outline-primary" href="{% url 'operadores_lista' %}">Asignar y gestionar operadores</a>
+      <a class="btn btn-outline-secondary" href="{% url 'bienes_lista' %}">Gestionar bienes</a>
+      <a class="btn btn-outline-success" href="{% url 'bien_crear' %}">Alta de bien</a>
+    </div>
+  </div>
+
+  <!-- Columna derecha: estadísticas -->
+  <div class="col-lg-8">
+    <!-- Tarjetas de métricas principales: se alimentan desde `stats` -->
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Bienes totales</h5>
+            <p class="display-6">{{ stats.bienes_total|default:0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Activos</h5>
+            <p class="display-6">{{ stats.bienes_activos|default:0 }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">Dados de baja</h5>
+            <p class="display-6">{{ stats.bienes_baja|default:0 }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

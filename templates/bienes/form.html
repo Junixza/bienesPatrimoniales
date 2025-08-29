@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+<!-- Hereda layout base (navbar, estilos, bloques) -->
+{% block title %}{{ titulo }}{% endblock %}
+<!-- Título de la pestaña (viene de contexto) -->
+{% block content %}
+<!-- Comienzo del contenido principal -->
+<!--
+  Plantilla: bienes/form.html
+  Propósito: Crear/editar un Bien.
+  Contexto esperado:
+    - `titulo`: string con el título de la pantalla (Crear/Editar).
+    - `form`: instancia de `BienForm` con los campos del modelo.
+  Notas:
+    - El formulario hace POST a la misma URL.
+    - Incluir `{% csrf_token %}` es obligatorio.
+    - El botón Cancelar regresa al listado de bienes.
+-->
+<h1 class="h4 mb-3">{{ titulo }}</h1>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Nombre</label>
+          {{ form.nombre }}
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Código Patrimonial</label>
+          {{ form.codigo_patrimonial }}
+        </div>
+        <div class="col-12">
+          <label class="form-label">Descripción</label>
+          {{ form.descripcion }}
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Fecha de Adquisición</label>
+          {{ form.fecha_adquisicion }}
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Valor</label>
+          {{ form.valor }}
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Cuenta / Código</label>
+          {{ form.cuenta_codigo }}
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Tipo de Origen</label>
+          {{ form.tipo_origen }}
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Estado</label>
+          {{ form.estado }}
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Ubicación</label>
+          {{ form.ubicacion }}
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Fecha de Baja</label>
+          {{ form.fecha_baja }}
+        </div>
+        <div class="col-md-9">
+          <label class="form-label">Motivo de Baja</label>
+          {{ form.motivo_baja }}
+        </div>
+      </div>
+      <div class="mt-4 d-flex gap-2">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+        <a class="btn btn-secondary" href="{% url 'bienes_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

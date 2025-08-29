@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Dar de baja operador{% endblock %}
+{% block content %}
+<!--
+  Plantilla: operadores/confirm_baja.html
+  Propósito: Confirmar la baja (desactivar) de un Operador.
+  Contexto esperado:
+    - `operador`: instancia de Operador a desactivar (campo booleano `activo`).
+  Notas:
+    - Esta acción NO elimina el usuario ni el operador; solo marca `activo=False`.
+    - Para reactivar existe la URL `operador_activar`.
+-->
+<h1 class="h4 mb-3">Dar de baja operador</h1>
+<div class="alert alert-warning">
+  ¿Confirmás dar de baja al operador <strong>{{ operador.usuario.get_full_name|default:operador.usuario.username }}</strong>?
+</div>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sí, dar de baja</button>
+  <a href="{% url 'operadores_lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

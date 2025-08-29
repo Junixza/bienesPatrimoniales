@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<!-- Hereda layout base (navbar, estilos, bloques) -->
+{% block title %}Dar de baja{% endblock %}
+<!-- Título de la pestaña para esta vista -->
+{% block content %}
+<!-- Comienzo del contenido principal de la página -->
+<!--
+  Plantilla: bienes/baja.html
+  Propósito: Registrar la baja de un Bien (baja lógica) indicando fecha y motivo.
+  Contexto esperado:
+    - `bien`: instancia del Bien a dar de baja.
+    - `form`: instancia de `BajaBienForm` con campos `fecha_baja` y `motivo_baja`.
+  Notas:
+    - El POST confirma la baja y actualiza el estado/campos del modelo.
+    - El botón Cancelar vuelve al listado de bienes.
+-->
+<h1 class="h4 mb-3">Dar de baja: {{ bien.nombre }} ({{ bien.codigo_patrimonial }})</h1>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <!-- Formulario de baja: requiere CSRF y validación del lado del servidor -->
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label">Fecha de baja</label>
+          {{ form.fecha_baja }}
+        </div>
+        <div class="col-12">
+          <label class="form-label">Motivo de baja</label>
+          {{ form.motivo_baja }}
+          <div class="form-text">Ej.: rezago (6.1.0), robo/hurto (adjuntar denuncia), cambio de estado, etc.</div>
+        </div>
+      </div>
+      <div class="mt-4 d-flex gap-2">
+        <button class="btn btn-danger" type="submit">Confirmar baja</button>
+        <a class="btn btn-secondary" href="{% url 'bienes_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

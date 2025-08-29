@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+<!-- Hereda layout base (navbar, estilos, bloques) -->
+{% block title %}{{ titulo }}{% endblock %}
+<!-- Título de la pestaña (viene de contexto) -->
+{% block content %}
+<!-- Comienzo del contenido principal -->
+<!--
+  Plantilla: operadores/form.html
+  Propósito: Crear/editar un Operador.
+  Contexto esperado:
+    - `titulo`: string con el título de la pantalla (Crear/Editar).
+    - `form`: instancia de `OperadorForm` (usuario, activo, bienes_asignados).
+  Notas:
+    - El campo `usuario` es un ForeignKey a Django User.
+    - `bienes_asignados` es un ManyToMany de Bien.
+-->
+<h1 class="h4 mb-3">{{ titulo }}</h1>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <form method="post" novalidate>
+      {% csrf_token %}
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Usuario</label>
+          {{ form.usuario }}
+        </div>
+        <div class="col-md-6 d-flex align-items-center">
+          <div class="form-check mt-4">
+            {{ form.activo }}
+            <label class="form-check-label">Activo</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <label class="form-label">Bienes asignados</label>
+          {{ form.bienes_asignados }}
+        </div>
+      </div>
+      <div class="mt-4 d-flex gap-2">
+        <button class="btn btn-primary" type="submit">Guardar</button>
+        <a class="btn btn-secondary" href="{% url 'operadores_lista' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
