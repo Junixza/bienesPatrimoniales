@@ -10,6 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# Este archivo de configuración es funcional para desarrollo y puede servir
+# como base para producción. Es una plantilla: ajustá SECRET_KEY, DEBUG,
+# ALLOWED_HOSTS, base de datos, estáticos/media y autenticación por entorno.
+# No subir claves reales al repositorio.
+# -----------------------------------------------------------------------------
+
 import os
 from pathlib import Path
 

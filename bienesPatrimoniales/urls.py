@@ -5,6 +5,11 @@ from bienes import views as bienes_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# URLconf principal funcional. Se entrega como base/plantilla; ajustar rutas,
+# names, middleware y patrones de autenticación/permiso según el proyecto.
+# -----------------------------------------------------------------------------
 urlpatterns = [
     path('admin/', admin.site.urls),
 
