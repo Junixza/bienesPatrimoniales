@@ -1,0 +1,31 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Navegación principal del sistema -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'bienes_lista' %}">Bienes</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'operadores_lista' %}">Operadores</a></li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        {% if user.is_authenticated %}
+          <!-- Estado autenticado: saludo + botón de salida (POST con CSRF) -->
+          <li class="nav-item me-2"><span class="navbar-text">Hola, {{ user.get_short_name|default:user.username }}</span></li>
+          <li class="nav-item">
+            <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-light btn-sm">Salir</button>
+            </form>
+          </li>
+        {% else %}
+          <!-- Estado no autenticado: acceso a login -->
+          <li class="nav-item"><a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Ingresar</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

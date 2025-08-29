@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!-- Hereda layout base (navbar, estilos, bloques) -->
+{% block title %}Eliminar Bien{% endblock %}
+<!-- Título de la pestaña -->
+{% block content %}
+<!-- Comienzo del contenido principal -->
+<!--
+  Plantilla: bienes/confirm_delete.html
+  Propósito: Confirmar la eliminación (borrado) de un Bien.
+  Contexto esperado:
+    - `bien`: instancia del Bien a eliminar.
+  Notas:
+    - Esta acción elimina el registro; si se prefiere conservar historial, usar baja lógica.
+-->
+<h1 class="h4 mb-3">Eliminar Bien</h1>
+<div class="alert alert-warning">
+  ¿Confirmás eliminar el bien <strong>{{ bien.nombre }}</strong> (código {{ bien.codigo_patrimonial }})?
+</div>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+  <a href="{% url 'bienes_lista' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

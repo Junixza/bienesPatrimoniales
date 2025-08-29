@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<!-- Hereda layout base (navbar, estilos, bloques) -->
+{% block title %}Detalle de Operador{% endblock %}
+<!-- Título de la pestaña -->
+{% block content %}
+<!-- Comienzo del contenido principal -->
+<!--
+  Plantilla: operadores/detalle.html
+  Propósito: Mostrar datos del operador y los bienes asignados.
+  Contexto esperado:
+    - `operador`: instancia de Operador (con relación a `usuario` y M2M `bienes_asignados`).
+  Notas:
+    - Botón Editar navega a la edición del operador.
+    - Lista de bienes asignados se obtiene con `operador.bienes_asignados.all`.
+-->
+<h1 class="h4 mb-3">{{ operador.usuario.get_full_name|default:operador.usuario.username }}</h1>
+<div class="card border-0 shadow-sm mb-3">
+  <div class="card-body">
+    <p><strong>Estado:</strong> {% if operador.activo %}Activo{% else %}Inactivo{% endif %}</p>
+    <a class="btn btn-outline-secondary" href="{% url 'operador_editar' operador.pk %}">Editar</a>
+  </div>
+</div>
+<div class="card border-0 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title">Bienes asignados</h5>
+    <ul class="mb-0">
+      {% for b in operador.bienes_asignados.all %}
+        <li>{{ b.codigo_patrimonial }} — {{ b.nombre }}</li>
+      {% empty %}
+        <li class="text-muted">Sin bienes asignados</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
