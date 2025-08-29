@@ -119,3 +119,62 @@ python manage.py runserver
 La aplicación estará disponible en `http://127.0.0.1:8000/`.
 
 -   **Panel de Administración**: `http://127.0.0.1:8000/admin/`
+
+## Ejecutar el Proyecto para Desarrollo
+
+Una vez que hayas completado la instalación inicial, sigue estos pasos cada vez que quieras trabajar en el proyecto:
+
+1. **Navega al directorio del proyecto** (si no estás ya en él):
+   ```bash
+   cd ruta/al/proyecto/bienesPatrimoniales
+   ```
+
+2. **Activa el entorno virtual** (siempre es necesario antes de trabajar):
+   ```bash
+   # En Windows (PowerShell):
+   .\venv\Scripts\Activate.ps1
+   
+   # En macOS/Linux:
+   source venv/bin/activate
+   ```
+
+3. **Asegúrate de que el servidor MySQL esté en ejecución**
+   - Verifica que el servicio de MySQL esté activo en tu sistema.
+   - Si no está activo, inicia el servicio.
+   - En Windows, puedes iniciar el servicio de MySQL desde el Panel de Control.
+   - En Linux, puedes iniciar el servicio de MySQL desde el terminal con el siguiente comando:
+   ```bash
+   sudo service mysql start
+   ```
+    Revisa el puerto de MySQL en el archivo de configuración de la base de datos
+    y que coincida el puerto en el que esta corriendo MySQL.
+    podes verificarlo con el siguiente comando en windows:
+    ```bash
+    netstat -ano | findstr :3306 --> puerto por defecto de mysql
+    ```
+    en linux con el comando:
+    ```bash
+    sudo netstat -tulpn | grep mysql 
+    ```
+4. **Inicia el servidor de desarrollo de Django desde donde esta el archivo manage.py**:
+   ```bash
+   python manage.py runserver
+   ```
+
+5. **Accede a la aplicación** en tu navegador:
+   - Página principal: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+   - Panel de administración: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+
+### Comandos útiles durante el desarrollo:
+
+- **Detener el servidor**: Presiona `Ctrl+C` en la terminal donde se está ejecutando el servidor.
+- **Desactivar el entorno virtual**: 
+    Cuando termines de trabajar, puedes desactivar el entorno virtual en windows con:
+    ```bash
+    deactivate
+    ```
+    y en linux con:
+    ```bash
+    deactivate
+    ```
+- **Ver errores**: Revisa la salida en la terminal donde se ejecuta el servidor para ver mensajes de error o advertencias.
