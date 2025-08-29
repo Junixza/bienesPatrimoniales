@@ -3,6 +3,15 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 from .models import Bien, Perfil, Operador
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# Este módulo de administración funciona correctamente para un uso básico
+# (inlines de Perfil y Operador, configuración de listas y filtros), pero está
+# entregado a modo de ejemplo/plantilla. Se puede usar en desarrollo y sirve
+# como base para producción mínima. Ajustar según políticas de tu institución,
+# permisos finos, búsquedas avanzadas y auditorías.
+# -----------------------------------------------------------------------------
+
 # Clases personalizadas para el admin
 class PerfilInline(admin.StackedInline):
     model = Perfil

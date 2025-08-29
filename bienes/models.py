@@ -3,6 +3,14 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# Los modelos de este módulo son funcionales y pueden usarse en desarrollo y
+# como base para producción. Se entregan a modo de ejemplo/plantilla y deberían
+# ajustarse a requerimientos institucionales (campos adicionales, permisos,
+# integridad referencial, y reglas de negocio específicas).
+# -----------------------------------------------------------------------------
+
 class Bien(models.Model):
     """
     Modelo para representar un bien patrimonial en el sistema.

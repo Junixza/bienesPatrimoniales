@@ -1,6 +1,12 @@
 from django import forms
 from .models import Bien, Operador
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# Formularios funcionales para operar Bienes y Operadores. Se entregan como
+# base/plantilla para personalizar validaciones, etiquetas, help_text y widgets
+# según necesidades institucionales.
+# -----------------------------------------------------------------------------
 class BienForm(forms.ModelForm):
     class Meta:
         model = Bien

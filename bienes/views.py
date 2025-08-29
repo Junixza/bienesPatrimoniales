@@ -4,6 +4,14 @@ from django.urls import reverse
 from .models import Bien, Operador
 from .forms import BienForm, BajaBienForm, OperadorForm
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# Vistas funcionales para operar el módulo de Bienes y Operadores. Se entregan
+# como base/plantilla: contempla autenticación mínima (@login_required) y
+# flujos básicos CRUD. Ajustar permisos, mensajes, manejo de errores y
+# optimizaciones (select_related/prefetch) según necesidades del proyecto.
+# -----------------------------------------------------------------------------
+
 # Vistas del módulo Bienes / Panel
 
 @login_required

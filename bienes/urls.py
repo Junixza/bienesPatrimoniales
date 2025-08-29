@@ -1,6 +1,11 @@
 from django.urls import path
 from . import views
 
+# -----------------------------------------------------------------------------
+# Nota de documentación (modo ejemplo)
+# URLconf funcional para Bienes y Operadores. Se entrega como base/plantilla
+# para ajustar paths, permisos y nombres según necesidades del proyecto.
+# -----------------------------------------------------------------------------
 urlpatterns = [
     path('', views.bienes_lista, name='bienes_lista'),
     path('nuevo/', views.bien_crear, name='bien_crear'),
